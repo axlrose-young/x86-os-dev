@@ -1,13 +1,18 @@
 .intel_syntax noprefix
 
-.global isr_wrapper
-.align 4
+.macro isr num
+.global isr\num
 
-isr_wrapper:
-	pushad		# pushes all general registers (double word)
-	cld		# Clears DF flag for forward string operations
-
+isr\num:			# respective isr address for idt
+	pushad 
+	cld			# Clears the DF flag before C code entry
+	push \num	
 	call isr_handler
-
+	add esp, 4		# Pop the pushed number 
 	popad
 	iret
+.endm
+
+# Invoking all isrs
+isr 0	
+isr 1	

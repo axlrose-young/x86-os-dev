@@ -21,4 +21,7 @@ kernel_main(void)
 	idt_init();
 
 	kprintf("Hello after gdt init\n");
+
+//	__asm__ volatile ("int 0x00");	
+	__asm__ volatile ("int 0x01");	
 }

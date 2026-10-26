@@ -3,7 +3,7 @@
 CC=i686-elf-gcc
 AS=i686-elf-gcc
 
-CFLAGS= -ffreestanding -O0 -Wall -Wextra -g -Iinclude
+CFLAGS= -ffreestanding -O0 -Wall -Wextra -g -Iinclude -masm=intel	# Uses intel syntax
 ASFLAGS = -Iinclude -g
 
 LDFLAGS= -T linker.ld -ffreestanding -nostdlib -lgcc
@@ -17,7 +17,9 @@ OBJS = build/boot.o \
        build/strlen.o \
        build/gdt.o \
        build/gdt_load.o \
-       build/idt.o
+       build/idt.o \
+       build/isr_wrapper.o \
+       build/isr_handler.o
 
 build/%.o : src/%.c | build
 	$(CC) $(CFLAGS) -c $< -o $@ 
