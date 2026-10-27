@@ -7,7 +7,7 @@ isr_handler(int num)
 	switch(num){
 		case 0:
 			kprintf("ISR number %d\n",num);
-			__asm__ volatile ("hlt");
+			__asm__ volatile ("cli;hlt");
 			break;
 		default:
 			kprintf("ISR number %d\n",num);

@@ -23,5 +23,7 @@ kernel_main(void)
 	kprintf("Hello after gdt init\n");
 
 //	__asm__ volatile ("int 0x00");	
-	__asm__ volatile ("int 0x01");	
+	__asm__ volatile ("int 0x08");	
+
+	kprintf("After interrupts\n");
 }
