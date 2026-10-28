@@ -18,12 +18,8 @@ kernel_main(void)
 {
 	terminal_init();	
 	gdt_init();
-	idt_init();
-
 	kprintf("Hello after gdt init\n");
 
-//	__asm__ volatile ("int 0x00");	
-	__asm__ volatile ("int 0x08");	
-
-	kprintf("After interrupts\n");
+	idt_init();
+	kprintf("Hello after idt init\n");
 }
